@@ -59,6 +59,8 @@ const parseTokipona = (s) => {
   return res;
 };
 
+const tokiponafont = ".,;:!?~";
+
 export class TokiPona extends HTMLElement {
   constructor() {
     super();
@@ -74,7 +76,7 @@ export class TokiPona extends HTMLElement {
         this.appendChild(cr("br"));
         continue;
       }
-      const tokipona = tok2jpn.find(i => i.tok == s);
+      const tokipona = tok2jpn.find(i => i.tok == s) || tokiponafont.indexOf(s) >= 0;
       const ruby = cr("ruby")
       const tp = cr("span");
       tp.className = tokipona ? "tokipona" : "no-tokipona";
